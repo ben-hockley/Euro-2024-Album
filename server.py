@@ -46,7 +46,6 @@ def submitNewAccount():
     cur.execute(f"INSERT INTO Accounts('Username','Password') VALUES ('{username}','{password}');")
     conn.commit()
     conn.close()
-
     return redirect("/signIn")
 
 @app.route("/home/<user>")
