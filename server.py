@@ -52,5 +52,13 @@ def submitNewAccount():
 def loadHomePage(user):
     return render_template('home.html',username=user)
 
+@app.route("/album/<user>")
+def loadAlbum(user):
+    return render_template('album.html',username=user)
+
+@app.route("/openPacks/<user>")
+def loadPacks(user):
+    return render_template('openPacks.html',username=user)
+
 if __name__ == "__main__":
     app.run(debug=True)

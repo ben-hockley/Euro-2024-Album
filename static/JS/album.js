@@ -1,0 +1,1 @@
+var pageNumber = 0; //special stickers
