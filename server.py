@@ -44,7 +44,7 @@ def submitNewAccount():
     conn = sqlite3.connect('euroalbum.db')
     cur = conn.cursor()
     cur.execute(f"INSERT INTO Accounts('Username','Password') VALUES ('{username}','{password}');")
-    conn.commit();
+    conn.commit()
     conn.close()
 
     return redirect("/signIn")
