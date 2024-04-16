@@ -20,15 +20,33 @@ def redirectHomePage():
     username = request.form.get('uname')
     password = request.form.get('pword')
 
-    conn = sqlite3.connect('euroAlbum.db')
+    conn = sqlite3.connect('euroalbum.db')
     cur = conn.cursor()
     cur.execute(f'SELECT Password FROM Accounts WHERE Username = "{username}"')
     realPassword = cur.fetchone()[0]
+    conn.close()
 
     #redirects user to homepage is password is correct
     if (realPassword == password):
         return redirect(f"/home/{username}")
     #else redirect back to sign in page
+    return redirect("/signIn")
+
+@app.route("/createAccount")
+def loadCreateAccount():
+    return render_template('createAccount.html')
+
+@app.route("/submitNewAccount", methods=['POST'])
+def submitNewAccount():
+    username = request.form.get('uname')
+    password = request.form.get('pword')
+
+    conn = sqlite3.connect('euroalbum.db')
+    cur = conn.cursor()
+    cur.execute(f"INSERT INTO Accounts('Username','Password') VALUES ('{username}','{password}');")
+    conn.commit();
+    conn.close()
+
     return redirect("/signIn")
 
 @app.route("/home/<user>")
