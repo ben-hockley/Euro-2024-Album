@@ -61,7 +61,7 @@ def loadAlbum(user):
 
     conn = sqlite3.connect('euroalbum.db')
     cur = conn.cursor()
-    cur.execute(f'SELECT Collected FROM {usersAlbum};')
+    cur.execute(f'SELECT Collected FROM {usersAlbum};') #get updated collection
     checklist = cur.fetchall()
     conn.close()
     return render_template('album.html',username=user,checklist=checklist)

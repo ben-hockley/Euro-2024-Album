@@ -3,6 +3,10 @@ updatePage();
 checklist = document.getElementsByClassName('hideThis')[0].innerHTML;
 checklist = checklist.slice(2,-3);
 checklist = checklist.split(',), ('); //make string into array (390 items)
+
+//TEST!
+checklist[27] = 1;
+
 console.log(checklist);
 
 function updatePage(){
@@ -24,7 +28,14 @@ function updatePage(){
         document.getElementById('pageDown').style.display = 'block';
         for (i=0;i<16;i++){
             document.getElementsByClassName('cardSpot')[i].style.display = 'block';
-            document.getElementsByClassName('cardSpot')[i].innerHTML = (16*pageNumber) - 9 + i;
+            cardNumber = (16*pageNumber) - 9 + i;
+            document.getElementsByClassName('cardSpot')[i].innerHTML = cardNumber;
+
+            if (checklist[cardNumber-1] == 1){
+                document.getElementsByClassName('cardSpot')[i].style.backgroundColor = 'green';
+            } else {
+                document.getElementsByClassName('cardSpot')[i].style.backgroundColor = 'white';
+            }
         };
     };
     document.getElementById('pageNumber').innerHTML = pageNumber;
@@ -38,3 +49,4 @@ document.getElementById('pageUp').addEventListener("click",function(){
     pageNumber += 1;
     updatePage();
 })
+
