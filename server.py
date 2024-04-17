@@ -46,7 +46,7 @@ def submitNewAccount():
     cur = conn.cursor()
     cur.execute(f"INSERT INTO Accounts('Username','Password') VALUES ('{username}','{password}');")
     conn.commit()
-    cur.execute(f"CREATE TABLE '{tableName}' AS SELECT * FROM AlbumTemplate;")
+    cur.execute(f"CREATE TABLE '{tableName}' AS SELECT * FROM AlbumTemplate;") #Create new table for new user
     conn.close()
     return redirect("/signIn")
 
@@ -56,7 +56,15 @@ def loadHomePage(user):
 
 @app.route("/album/<user>")
 def loadAlbum(user):
-    return render_template('album.html',username=user)
+
+    usersAlbum = user + "_sTable"
+
+    conn = sqlite3.connect('euroalbum.db')
+    cur = conn.cursor()
+    cur.execute(f'SELECT Collected FROM {usersAlbum};')
+    checklist = cur.fetchall()
+    conn.close()
+    return render_template('album.html',username=user,checklist=checklist)
 
 @app.route("/openPacks/<user>")
 def loadPacks(user):

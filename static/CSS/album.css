@@ -38,3 +38,6 @@ body{
     margin-bottom:auto;
     border:1px solid black;
 }
+.hideThis{
+    display: none;
+}
