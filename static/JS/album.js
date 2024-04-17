@@ -10,14 +10,16 @@ function updatePage(){
         document.getElementById('pageDown').style.display = 'none'
         for (i=0;i<6;i++){
             document.getElementsByClassName('cardSpot')[i].style.display = 'block'
+            document.getElementsByClassName('cardSpot')[i].innerHTML = i+1
         }
-        for (i=6;i<15;i++){
+        for (i=6;i<16;i++){
             document.getElementsByClassName('cardSpot')[i].style.display = 'none'
         }
     } else {
         document.getElementById('pageDown').style.display = 'block'
-        for (i=0;i<15;i++){
+        for (i=0;i<16;i++){
             document.getElementsByClassName('cardSpot')[i].style.display = 'block'
+            document.getElementsByClassName('cardSpot')[i].innerHTML = (16*pageNumber) - 9 + i;
         }
     }
     document.getElementById('pageNumber').innerHTML = pageNumber;
