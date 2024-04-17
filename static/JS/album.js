@@ -20,6 +20,7 @@ function updatePage(){
             document.getElementsByClassName('cardSpot')[i].style.display = 'block'
         }
     }
+    document.getElementById('pageNumber').innerHTML = pageNumber;
 }
 
 document.getElementById('pageDown').addEventListener("click",function(){

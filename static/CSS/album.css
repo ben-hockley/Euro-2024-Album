@@ -45,3 +45,12 @@ body{
     display:flex;
     justify-content: space-between;
 }
+#pageNumber{
+    height:100%;
+    width:5%
+    background-color: white;
+    color:blue;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+}
