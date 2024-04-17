@@ -41,10 +41,12 @@ def submitNewAccount():
     username = request.form.get('uname')
     password = request.form.get('pword')
 
+    tableName = username + "_sTable"
     conn = sqlite3.connect('euroalbum.db')
     cur = conn.cursor()
     cur.execute(f"INSERT INTO Accounts('Username','Password') VALUES ('{username}','{password}');")
     conn.commit()
+    cur.execute(f"CREATE TABLE '{tableName}' AS SELECT * FROM AlbumTemplate;")
     conn.close()
     return redirect("/signIn")
 
