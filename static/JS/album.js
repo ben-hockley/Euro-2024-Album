@@ -38,7 +38,7 @@ function updatePage(){
             cardNumber = (16*pageNumber) - 9 + i;
             document.getElementsByClassName('cardSpot')[i].innerHTML = cardNumber;
 
-            if (checklist[cardNumber-1] == 1){
+            if (checklist[cardNumber-1] == 0){
 
                 //remove number to make room for sticker
                 document.getElementsByClassName('cardSpot')[i].innerHTML = '';
@@ -86,6 +86,18 @@ function formatPage(){
             break;
         case 4:
             teamPage('Hungary','Green')
+            break;
+        case 5:
+            teamPage('Croatia','Red')
+            break;
+        case 6:
+            teamPage('Italy','Blue')
+            break;
+        case 7:
+            teamPage('Albania','DarkRed')
+            break;
+        case 8:
+            teamPage('Spain','Red')
             break;
     }
 }
