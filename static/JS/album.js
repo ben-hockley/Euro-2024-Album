@@ -1,13 +1,11 @@
 var pageNumber = 0; //special stickers
-updatePage();
 checklist = document.getElementsByClassName('hideThis')[0].innerHTML;
 checklist = checklist.slice(2,-3);
 checklist = checklist.split(',), ('); //make string into array (390 items)
-
-//TEST!
-checklist[27] = 1;
-
 console.log(checklist);
+updatePage(); //call after defining checklist
+
+//checklist is zero indexed -> ie. checklist[0] = cardNumber 1
 
 function updatePage(){
     if (pageNumber==0){
@@ -15,6 +13,13 @@ function updatePage(){
         for (i=0;i<6;i++){
             document.getElementsByClassName('cardSpot')[i].style.display = 'block';
             document.getElementsByClassName('cardSpot')[i].innerHTML = i+1;
+
+            if (checklist[i]==1){
+                document.getElementsByClassName('cardSpot')[i].style.backgroundColor = 'green';
+            } else {
+                document.getElementsByClassName('cardSpot')[i].style.backgroundColor = 'white';
+            };
+
         };
         for (i=6;i<16;i++){
             document.getElementsByClassName('cardSpot')[i].style.display = 'none';
