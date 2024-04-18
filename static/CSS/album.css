@@ -53,3 +53,12 @@ body{
     margin-top: auto;
     margin-bottom: auto;
 }
+.sticker{
+    width:100%;
+    height:100%;
+}
+.TeamName{
+    color:white;
+    margin-top: auto;
+    margin-bottom: auto;
+}

@@ -3,7 +3,9 @@ checklist = document.getElementsByClassName('hideThis')[0].innerHTML;
 checklist = checklist.slice(2,-3);
 checklist = checklist.split(',), ('); //make string into array (390 items)
 console.log(checklist);
+checklist[55] = 1; //Hungary Goalkeeper (Test; remove at end)
 updatePage(); //call after defining checklist
+formatPage();
 
 //checklist is zero indexed -> ie. checklist[0] = cardNumber 1
 
@@ -37,7 +39,15 @@ function updatePage(){
             document.getElementsByClassName('cardSpot')[i].innerHTML = cardNumber;
 
             if (checklist[cardNumber-1] == 1){
-                document.getElementsByClassName('cardSpot')[i].style.backgroundColor = 'green';
+
+                //remove number to make room for sticker
+                document.getElementsByClassName('cardSpot')[i].innerHTML = '';
+                
+                //stick sticker in if collected = true (1)
+                sticker = document.createElement('img');
+                sticker.className = 'sticker';
+                sticker.setAttribute('src', '/static/img/Stickers/' + cardNumber + '.png');
+                document.getElementsByClassName('cardSpot')[i].appendChild(sticker);
             } else {
                 document.getElementsByClassName('cardSpot')[i].style.backgroundColor = 'white';
             }
@@ -49,9 +59,42 @@ function updatePage(){
 document.getElementById('pageDown').addEventListener("click",function(){
     pageNumber -= 1;
     updatePage();
+    formatPage();
 });
 document.getElementById('pageUp').addEventListener("click",function(){
     pageNumber += 1;
     updatePage();
+    formatPage();
 })
 
+function formatPage(){
+    //adds title and changes background color depending on the team
+    switch (pageNumber){
+        case 0:
+            //front page
+            teamPage('Euro 2024', 'Green')
+            break;
+        case 1:
+            //Switzerland
+            teamPage('Switzerland', 'Red');
+            break;
+        case 2:
+            teamPage('Germany', 'Black');
+            break;
+        case 3:
+            teamPage('Scotland','DarkBlue');
+            break;
+        case 4:
+            teamPage('Hungary','Green')
+            break;
+    }
+}
+
+function teamPage(Team, Color){
+    //set background to team color
+    document.getElementsByClassName('page')[0].style.backgroundColor = Color;
+    document.getElementsByClassName('page')[1].style.backgroundColor = Color;
+
+    //add Team Name to top of left page
+    document.getElementsByClassName('TeamName')[0].innerHTML = Team;
+}
