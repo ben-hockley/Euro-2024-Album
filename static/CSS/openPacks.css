@@ -1,0 +1,23 @@
+body{
+    height:100vh;
+    margin:0;
+    width:100%;
+}
+.cardContainer{
+    position: fixed;
+    top:30%;
+    height:30%;
+    width:100%;
+    display:flex;
+    justify-content: space-evenly;
+    border:1px solid red;
+}
+.card{
+    height:100%;
+    width:10%;
+    border:1px solid blue;
+}
+.cardImg{
+    height:100%;
+    width:100%;
+}
