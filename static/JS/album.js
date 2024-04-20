@@ -105,6 +105,48 @@ function formatPage(){
         case 10:
             teamPage('England','DarkBlue')
             break;
+        case 11:
+            teamPage('Slovenia','LightBlue')
+            break;
+        case 12:
+            teamPage('Czech Republic','DarkRed')
+            break;
+        case 13:
+            teamPage('Poland','Red')
+            break;
+        case 14:
+            teamPage('France','DarkBlue')
+            break;
+        case 15:
+            teamPage('Netherlands','Orange')
+            break;
+        case 16:
+            teamPage('Austria','Red')
+            break;
+        case 17:
+            teamPage('Romania','Orange')
+            break;
+        case 18:
+            teamPage('Ukraine','Yellow')
+            break;
+        case 19:
+            teamPage('Serbia','Blue')
+            break;
+        case 20:
+            teamPage('Belgium','Brown')
+            break;
+        case 21:
+            teamPage('Turkey','Red')
+            break;
+        case 22:
+            teamPage('Czech Republic','DarkBlue')
+            break;
+        case 23:
+            teamPage('Portugal','DarkGreen')
+            break;
+        case 24:
+            teamPage('Georgia','Red')
+            break;
     }
 }
 
