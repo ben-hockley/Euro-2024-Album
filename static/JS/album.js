@@ -99,6 +99,12 @@ function formatPage(){
         case 8:
             teamPage('Spain','Red')
             break;
+        case 9:
+            teamPage('Denmark','Red')
+            break;
+        case 10:
+            teamPage('England','DarkBlue')
+            break;
     }
 }
 
