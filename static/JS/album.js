@@ -157,3 +157,9 @@ function teamPage(Team, Color){
     //add Team Name to top of left page
     document.getElementsByClassName('TeamName')[0].innerHTML = Team;
 }
+
+username = window.location.href.split("/").pop();
+
+$("#backToHome").on("click", function() {
+    window.location.href = '/home/' + username;
+});

@@ -7,3 +7,6 @@ $("#packs").on("click", function() {
 $("#album").on("click", function() {
     window.location.href = '/album/' + username;
 });
+$("#backToHome").on("click", function() {
+    window.location.href = '/home/' + username;
+});

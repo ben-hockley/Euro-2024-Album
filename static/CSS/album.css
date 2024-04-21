@@ -62,3 +62,8 @@ body{
     margin-top: auto;
     margin-bottom: auto;
 }
+#backToHome{
+    position:fixed;
+    left:5px;
+    top:5px;
+}
