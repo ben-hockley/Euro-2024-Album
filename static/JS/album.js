@@ -3,7 +3,6 @@ checklist = document.getElementsByClassName('hideThis')[0].innerHTML;
 checklist = checklist.slice(2,-3);
 checklist = checklist.split(',), ('); //make string into array (390 items)
 console.log(checklist);
-checklist[55] = 1; //Hungary Goalkeeper (Test; remove at end)
 updatePage(); //call after defining checklist
 formatPage();
 
@@ -16,7 +15,7 @@ function updatePage(){
             document.getElementsByClassName('cardSpot')[i].style.display = 'block';
             document.getElementsByClassName('cardSpot')[i].innerHTML = i+1;
 
-            if (checklist[i]==1){
+            if (checklist[i]==0){
                 document.getElementsByClassName('cardSpot')[i].style.backgroundColor = 'green';
             } else {
                 document.getElementsByClassName('cardSpot')[i].style.backgroundColor = 'white';
@@ -38,7 +37,7 @@ function updatePage(){
             cardNumber = (16*pageNumber) - 9 + i;
             document.getElementsByClassName('cardSpot')[i].innerHTML = cardNumber;
 
-            if (checklist[cardNumber-1] == 0){
+            if (checklist[cardNumber-1] == 1){
 
                 //remove number to make room for sticker
                 document.getElementsByClassName('cardSpot')[i].innerHTML = '';
