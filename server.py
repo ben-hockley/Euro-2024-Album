@@ -70,5 +70,45 @@ def loadAlbum(user):
 def loadPacks(user):
     return render_template('openPacks.html',username=user)
 
+@app.route('/logNewCards',methods=['POST'])
+def logNewCards():
+    user = request.form.get('uname')
+    card1 = request.form.get('pack1')
+    card2 = request.form.get('pack2')
+    card3 = request.form.get('pack3')
+    card4 = request.form.get('pack4')
+    card5 = request.form.get('pack5')
+
+    usersAlbum = user + "_sTable"
+    conn = sqlite3.connect('euroalbum.db')
+    cur = conn.cursor()
+    cur.execute(f'SELECT Collected FROM {usersAlbum} WHERE ID = {card1}')
+    checkCollected = cur.fetchone()[0]
+    if checkCollected == 0:
+        cur.execute(f'UPDATE {usersAlbum} SET Collected = 1 WHERE ID = {card1};')
+        conn.commit()
+    cur.execute(f'SELECT Collected FROM {usersAlbum} WHERE ID = {card2}')
+    checkCollected = cur.fetchone()[0]
+    if checkCollected == 0:
+        cur.execute(f'UPDATE {usersAlbum} SET Collected = 1 WHERE ID = {card2};')
+        conn.commit()
+    cur.execute(f'SELECT Collected FROM {usersAlbum} WHERE ID = {card3}')
+    checkCollected = cur.fetchone()[0]
+    if checkCollected == 0:
+        cur.execute(f'UPDATE {usersAlbum} SET Collected = 1 WHERE ID = {card3};')
+        conn.commit()
+    cur.execute(f'SELECT Collected FROM {usersAlbum} WHERE ID = {card4}')
+    checkCollected = cur.fetchone()[0]
+    if checkCollected == 0:
+        cur.execute(f'UPDATE {usersAlbum} SET Collected = 1 WHERE ID = {card4};')
+        conn.commit()
+    cur.execute(f'SELECT Collected FROM {usersAlbum} WHERE ID = {card5}')
+    checkCollected = cur.fetchone()[0]
+    if checkCollected == 0:
+        cur.execute(f'UPDATE {usersAlbum} SET Collected = 1 WHERE ID = {card5};')
+        conn.commit()
+    conn.close()
+    return redirect('/home/'+user)
+
 if __name__ == "__main__":
     app.run(debug=True)
