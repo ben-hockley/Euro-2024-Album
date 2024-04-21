@@ -27,3 +27,9 @@ body{
 .hiddenInput{
     display: none;
 }
+#submitCards{
+    position:fixed;
+    width:10%;
+    left:45%;
+    top:65%;
+}
