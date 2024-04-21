@@ -26,7 +26,7 @@ def redirectHomePage():
     realPassword = cur.fetchone()[0]
     conn.close()
 
-    #redirects user to homepage is password is correct
+    #redirects user to homepage if password is correct
     if (realPassword == password):
         return redirect(f"/home/{username}")
     #else redirect back to sign in page
@@ -64,6 +64,7 @@ def loadAlbum(user):
     cur.execute(f'SELECT Collected FROM {usersAlbum};') #get updated collection
     checklist = cur.fetchall()
     conn.close()
+    checklist = json.dumps(checklist)
     return render_template('album.html',username=user,checklist=checklist)
 
 @app.route("/openPacks/<user>")
@@ -72,7 +73,9 @@ def loadPacks(user):
 
 @app.route('/logNewCards',methods=['POST'])
 def logNewCards():
+    #get username
     user = request.form.get('uname')
+    #get card numbers of all 5 cards in pack.
     card1 = request.form.get('pack1')
     card2 = request.form.get('pack2')
     card3 = request.form.get('pack3')
@@ -82,32 +85,40 @@ def logNewCards():
     usersAlbum = user + "_sTable"
     conn = sqlite3.connect('euroalbum.db')
     cur = conn.cursor()
+    #1st card
     cur.execute(f'SELECT Collected FROM {usersAlbum} WHERE ID = {card1}')
     checkCollected = cur.fetchone()[0]
     if checkCollected == 0:
         cur.execute(f'UPDATE {usersAlbum} SET Collected = 1 WHERE ID = {card1};')
         conn.commit()
+    #2nd card
     cur.execute(f'SELECT Collected FROM {usersAlbum} WHERE ID = {card2}')
     checkCollected = cur.fetchone()[0]
     if checkCollected == 0:
         cur.execute(f'UPDATE {usersAlbum} SET Collected = 1 WHERE ID = {card2};')
         conn.commit()
+    #3rd card
     cur.execute(f'SELECT Collected FROM {usersAlbum} WHERE ID = {card3}')
     checkCollected = cur.fetchone()[0]
     if checkCollected == 0:
         cur.execute(f'UPDATE {usersAlbum} SET Collected = 1 WHERE ID = {card3};')
         conn.commit()
+    #4th card
     cur.execute(f'SELECT Collected FROM {usersAlbum} WHERE ID = {card4}')
     checkCollected = cur.fetchone()[0]
     if checkCollected == 0:
         cur.execute(f'UPDATE {usersAlbum} SET Collected = 1 WHERE ID = {card4};')
         conn.commit()
+    #5th card
     cur.execute(f'SELECT Collected FROM {usersAlbum} WHERE ID = {card5}')
     checkCollected = cur.fetchone()[0]
     if checkCollected == 0:
         cur.execute(f'UPDATE {usersAlbum} SET Collected = 1 WHERE ID = {card5};')
         conn.commit()
+    #close connection
     conn.close()
+
+    #redirect user back to homescreen
     return redirect('/home/'+user)
 
 if __name__ == "__main__":

@@ -16,6 +16,7 @@ for (i=0;i<5;i++){
 }
 
 document.getElementById('uname').value = username;
+//assign card numbers of cards packed to the hidden form for sqlite3 db.
 document.getElementById('pack1').value = pack[0];
 document.getElementById('pack2').value = pack[1];
 document.getElementById('pack3').value = pack[2];

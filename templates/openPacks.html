@@ -9,6 +9,7 @@
     </head>
     <body>
         <div class="cardContainer">
+            <!--Containers where cards in pack are displayed-->
             <div class="card"></div>
             <div class="card"></div>
             <div class="card"></div>
@@ -16,6 +17,7 @@
             <div class="card"></div>
         </div>
         <form action="/logNewCards" method="post">
+            <!--Hidden form to submit card numbers to sqlite db-->
             <input type="text" name="uname" id="uname" class="hiddenInput">
             <input type="number" name="pack1" id="pack1" class="hiddenInput">
             <input type="number" name="pack2" id="pack2" class="hiddenInput">

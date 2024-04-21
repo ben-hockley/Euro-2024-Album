@@ -1,7 +1,9 @@
 var pageNumber = 0; //special stickers
 checklist = document.getElementsByClassName('hideThis')[0].innerHTML;
-checklist = checklist.slice(2,-3);
-checklist = checklist.split(',), ('); //make string into array (390 items)
+//checklist = checklist.slice(2,-3);
+//checklist = checklist.split(',), ('); //make string into array (390 items)
+
+checklist = JSON.parse(checklist);
 console.log(checklist);
 updatePage(); //call after defining checklist
 formatPage();
