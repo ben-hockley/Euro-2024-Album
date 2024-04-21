@@ -172,3 +172,12 @@ username = window.location.href.split("/").pop();
 $("#backToHome").on("click", function() {
     window.location.href = '/home/' + username;
 });
+
+for (i=0;i<24;i++){
+    document.getElementsByClassName('flag')[i].addEventListener("click",function(){
+        pageNumber = parseInt(this.id);
+        document.getElementById('skipToPageNode').style.display = 'none';
+        updatePage();
+        formatPage();
+    })
+}
