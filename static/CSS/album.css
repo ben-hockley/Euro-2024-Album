@@ -67,3 +67,41 @@ body{
     left:5px;
     top:5px;
 }
+#pageNumber:hover{
+    background-color: darkblue;
+    color:white;
+}
+
+
+
+#skipToPageNode{
+    display: none; /*hidden by default -> flex when displayed*/
+    position: fixed;
+    width:50vw;
+    height:min-content;
+    background-color: blue;
+    border:4px solid white;
+    margin:0;
+    box-sizing: border-box;
+    left:25vw;
+    top:15vh;
+    flex-wrap: wrap;
+}
+.flag-holder{
+    box-sizing: border-box;
+    border:1px solid white;
+    width:25%;
+    display:flex;
+    justify-content: center;
+    height:10vh;
+    margin-top:1vh;
+    margin-bottom: 1vh;
+}
+.flag{
+    border-radius:50%;
+    box-sizing: border-box;
+}
+.flag:hover{
+    transform: scale(1.2, 1.2);
+    border: 1px solid white;
+}

@@ -1,8 +1,5 @@
 var pageNumber = 0; //special stickers
 checklist = document.getElementsByClassName('hideThis')[0].innerHTML;
-//checklist = checklist.slice(2,-3);
-//checklist = checklist.split(',), ('); //make string into array (390 items)
-
 checklist = JSON.parse(checklist);
 console.log(checklist);
 updatePage(); //call after defining checklist
@@ -12,6 +9,7 @@ formatPage();
 
 function updatePage(){
     if (pageNumber==0){
+        //first page of book (can't go backwards.)
         document.getElementById('pageDown').style.display = 'none';
         for (i=0;i<6;i++){
             document.getElementsByClassName('cardSpot')[i].style.display = 'block';
@@ -68,6 +66,15 @@ document.getElementById('pageUp').addEventListener("click",function(){
     formatPage();
 })
 
+document.getElementById('pageNumber').addEventListener("click",function(){
+    //if invisible make visible, and vice-versa
+    if (document.getElementById('skipToPageNode').style.display == "none"){
+        document.getElementById('skipToPageNode').style.display = "flex"
+    } else {
+        document.getElementById('skipToPageNode').style.display = "none"
+    }
+})
+
 function formatPage(){
     //adds title and changes background color depending on the team
     switch (pageNumber){
@@ -110,7 +117,7 @@ function formatPage(){
             teamPage('Slovenia','LightBlue')
             break;
         case 12:
-            teamPage('Czech Republic','DarkRed')
+            teamPage('Serbia','DarkRed')
             break;
         case 13:
             teamPage('Poland','Red')
@@ -131,7 +138,7 @@ function formatPage(){
             teamPage('Ukraine','Yellow')
             break;
         case 19:
-            teamPage('Serbia','Blue')
+            teamPage('Slovakia','Blue')
             break;
         case 20:
             teamPage('Belgium','Brown')

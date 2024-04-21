@@ -64,7 +64,7 @@ def loadAlbum(user):
     cur.execute(f'SELECT Collected FROM {usersAlbum};') #get updated collection
     checklist = cur.fetchall()
     conn.close()
-    checklist = json.dumps(checklist)
+    checklist = json.dumps(checklist) #convert array to JSON to pass to JS.
     return render_template('album.html',username=user,checklist=checklist)
 
 @app.route("/openPacks/<user>")

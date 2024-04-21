@@ -54,3 +54,8 @@ body{
     height:min-content;
     margin-bottom:0;
 }
+#signOut{
+    position:fixed;
+    right:5px;
+    top:5px;
+}
