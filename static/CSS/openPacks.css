@@ -33,3 +33,10 @@ body{
     left:45%;
     top:65%;
 }
+.newStickerTag{
+    position:absolute !important; /*Override bootstrap positioning */
+    top:-40%; /* Position above sticker */
+    width:100%;
+    font-weight: bold;
+    text-align: center;
+}

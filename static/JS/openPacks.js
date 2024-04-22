@@ -22,3 +22,27 @@ document.getElementById('pack2').value = pack[1];
 document.getElementById('pack3').value = pack[2];
 document.getElementById('pack4').value = pack[3];
 document.getElementById('pack5').value = pack[4];
+
+//get checklist (before new stickers added)
+checklist = document.getElementById('checklist').innerHTML;
+checklist = JSON.parse(checklist);
+
+
+//check if cards are swaps or new
+for (i=0;i<5;i++){
+    cardNumber = pack[i];
+    console.log("cardNo: "+cardNumber)
+    if (checklist[cardNumber-1] == 1){
+        console.log("swap");
+    } else {
+        console.log("new card!");
+
+        newStickerTag = document.createElement('div');
+        newStickerTag.classList.add('newStickerTag');
+        //add bootstrap
+        newStickerTag.classList.add('alert');
+        newStickerTag.classList.add('alert-success');
+        newStickerTag.innerHTML = 'NEW';
+        document.getElementsByClassName('card')[i].appendChild(newStickerTag);
+    }
+}

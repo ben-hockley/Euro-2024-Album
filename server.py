@@ -69,7 +69,17 @@ def loadAlbum(user):
 
 @app.route("/openPacks/<user>")
 def loadPacks(user):
-    return render_template('openPacks.html',username=user)
+    usersAlbum = user + "_sTable"
+
+    #get connection before opening new pack to check if cards are new
+    conn = sqlite3.connect('euroalbum.db')
+    cur = conn.cursor()
+    cur.execute(f'SELECT Collected FROM {usersAlbum};')
+    checklist = cur.fetchall()
+    conn.close()
+    checklist = json.dumps(checklist)
+
+    return render_template('openPacks.html',username=user,checklist=checklist)
 
 @app.route('/logNewCards',methods=['POST'])
 def logNewCards():
