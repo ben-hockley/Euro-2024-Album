@@ -15,3 +15,15 @@ $("#backToHome").on("click", function() {
 $("#signOut").on("click", function() {
     window.location.href = '/signIn' //signs user out (redirects back to sign in page)
 })
+
+swapList = JSON.parse(document.getElementById('swapList').innerHTML);
+
+for (i=0;i<swapList.length;i++){
+    swap = document.createElement('img');
+
+    swap.classList.add('swap');
+    swap.classList.add(swapList[i]);
+    swap.setAttribute('src','/static/img/Stickers/'+swapList[i]+'.png');
+
+    document.getElementById('swapContainer').appendChild(swap);
+}

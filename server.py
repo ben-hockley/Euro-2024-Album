@@ -55,7 +55,16 @@ def submitNewAccount():
 
 @app.route("/home/<user>")
 def loadHomePage(user):
-    return render_template('home.html',username=user)
+
+    usersSwapStack = user + "_sSwaps"
+
+    conn = sqlite3.connect('euroalbum.db')
+    cur = conn.cursor()
+    cur.execute(f"SELECT cardNumber FROM {usersSwapStack};") #get updated swap stack
+    swapList = cur.fetchall()
+    conn.close()
+    swapList = json.dumps(swapList) #convert to json to pass to JS
+    return render_template('home.html', username=user, swapList=swapList)
 
 @app.route("/album/<user>")
 def loadAlbum(user):
