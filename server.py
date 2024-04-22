@@ -41,12 +41,15 @@ def submitNewAccount():
     username = request.form.get('uname')
     password = request.form.get('pword')
 
-    tableName = username + "_sTable"
+    albumName = username + "_sTable"
+    swapStackName = username + "_sSwaps"
+
     conn = sqlite3.connect('euroalbum.db')
     cur = conn.cursor()
     cur.execute(f"INSERT INTO Accounts('Username','Password') VALUES ('{username}','{password}');")
     conn.commit()
-    cur.execute(f"CREATE TABLE '{tableName}' AS SELECT * FROM AlbumTemplate;") #Create new table for new user
+    cur.execute(f"CREATE TABLE '{albumName}' AS SELECT * FROM AlbumTemplate;") #Create new album for new user
+    cur.execute(f"CREATE TABLE '{swapStackName}' AS SELECT * FROM SwapStackTemplate;") #Create new swap stack for new user
     conn.close()
     return redirect("/signIn")
 
@@ -93,13 +96,20 @@ def logNewCards():
     card5 = request.form.get('pack5')
 
     usersAlbum = user + "_sTable"
+    usersSwapStack = user + "_sSwaps"
+
     conn = sqlite3.connect('euroalbum.db')
     cur = conn.cursor()
     #1st card
     cur.execute(f'SELECT Collected FROM {usersAlbum} WHERE ID = {card1}')
     checkCollected = cur.fetchone()[0]
     if checkCollected == 0:
+        #if new card stick into the users album
         cur.execute(f'UPDATE {usersAlbum} SET Collected = 1 WHERE ID = {card1};')
+        conn.commit()
+    else:
+        #if not a new card add to the users swap stack.
+        cur.execute(f'INSERT INTO {usersSwapStack} (cardNumber) VALUES ({card1});')
         conn.commit()
     #2nd card
     cur.execute(f'SELECT Collected FROM {usersAlbum} WHERE ID = {card2}')
@@ -107,11 +117,17 @@ def logNewCards():
     if checkCollected == 0:
         cur.execute(f'UPDATE {usersAlbum} SET Collected = 1 WHERE ID = {card2};')
         conn.commit()
+    else:
+        cur.execute(f'INSERT INTO {usersSwapStack} (cardNumber) VALUES ({card2});')
+        conn.commit()
     #3rd card
     cur.execute(f'SELECT Collected FROM {usersAlbum} WHERE ID = {card3}')
     checkCollected = cur.fetchone()[0]
     if checkCollected == 0:
         cur.execute(f'UPDATE {usersAlbum} SET Collected = 1 WHERE ID = {card3};')
+        conn.commit()
+    else:
+        cur.execute(f'INSERT INTO {usersSwapStack} (cardNumber) VALUES ({card3});')
         conn.commit()
     #4th card
     cur.execute(f'SELECT Collected FROM {usersAlbum} WHERE ID = {card4}')
@@ -119,11 +135,17 @@ def logNewCards():
     if checkCollected == 0:
         cur.execute(f'UPDATE {usersAlbum} SET Collected = 1 WHERE ID = {card4};')
         conn.commit()
+    else:
+        cur.execute(f'INSERT INTO {usersSwapStack} (cardNumber) VALUES ({card4});')
+        conn.commit()
     #5th card
     cur.execute(f'SELECT Collected FROM {usersAlbum} WHERE ID = {card5}')
     checkCollected = cur.fetchone()[0]
     if checkCollected == 0:
         cur.execute(f'UPDATE {usersAlbum} SET Collected = 1 WHERE ID = {card5};')
+        conn.commit()
+    else:
+        cur.execute(f'INSERT INTO {usersSwapStack} (cardNumber) VALUES ({card5});')
         conn.commit()
     #close connection
     conn.close()

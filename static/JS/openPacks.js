@@ -1,6 +1,6 @@
 //generate 5 random cards; card number from 1 to 
 
-pack = []; //array to hold all cards in the pack
+pack = []; //array to hold card numbers of all 5 cards in the pack
 username = window.location.href.split("/").pop();
 console.log(username)
 
@@ -37,6 +37,7 @@ for (i=0;i<5;i++){
     } else {
         console.log("new card!");
 
+        //add 'NEW' tag to go above new sticker.
         newStickerTag = document.createElement('div');
         newStickerTag.classList.add('newStickerTag');
         //add bootstrap
