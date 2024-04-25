@@ -56,6 +56,8 @@ for (i=0;i<swapList.length;i++){
         console.log(node);
         node.style.display = 'none';
     })
-
     document.getElementById('swapContainer').appendChild(swapBox);
+    swapBox.firstChild.addEventListener("click",function(){
+        window.location.href = '/home/'+ username +'/createSwapRequest/' + this.parentElement.lastChild.getAttribute('src').split("/").pop();
+    })
 }
