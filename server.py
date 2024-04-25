@@ -187,5 +187,17 @@ def postSwapRequest(user, cardNumber):
     conn.close()
     return redirect('/home/'+user)
 
+@app.route('/home/<user>/viewSwapRequests')
+def viewSwapRequests(user):
+    conn = sqlite3.connect('euroalbum.db')
+    cur = conn.cursor()
+    cur.execute('SELECT * FROM SwapRequests;')
+    SwapRequests = cur.fetchall()
+    conn.close()
+
+    SwapRequests = json.dumps(SwapRequests)
+    return render_template('viewSwapRequests.html',user=user,SwapRequests=SwapRequests)
+
+
 if __name__ == "__main__":
     app.run(debug=True)

@@ -1,0 +1,28 @@
+#swapRequests{
+    display: none;
+}
+body{
+    width:100%;
+    height:100vh;
+    text-align: center;
+}
+#swapRequestsContainer{
+    width:100%;
+    height:90%;
+    box-sizing: border-box;
+    border:2px solid blue;
+    overflow:auto;
+}
+.swapRequest{
+    border:1px solid black;
+    box-sizing: border-box;
+    width:100%;
+    height:20%;
+}
+h1{
+    width:100%;
+    margin:0;
+    height:10%;
+    margin-bottom:0 !important;
+    box-sizing: border-box;
+}

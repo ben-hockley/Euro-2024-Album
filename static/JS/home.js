@@ -13,7 +13,11 @@ $("#backToHome").on("click", function() {
 });
 
 $("#signOut").on("click", function() {
-    window.location.href = '/signIn' //signs user out (redirects back to sign in page)
+    window.location.href = '/signIn'; //signs user out (redirects back to sign in page)
+})
+
+$("#viewSwapRequests").on("click", function(){
+    window.location.href = '/home/' + username + '/viewSwapRequests'; //redirects user to view all swap requests
 })
 
 // Get JSON list of all card numbers of user's swaps
