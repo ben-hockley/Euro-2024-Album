@@ -109,6 +109,7 @@ def logNewCards():
 
     conn = sqlite3.connect('euroalbum.db')
     cur = conn.cursor()
+
     #1st card
     cur.execute(f'SELECT Collected FROM {usersAlbum} WHERE ID = {card1}')
     checkCollected = cur.fetchone()[0]
@@ -165,6 +166,26 @@ def logNewCards():
 @app.route('/home/<user>/createSwapRequest/<cardNumber>')
 def createSwapRequest(user, cardNumber):
     return render_template('createSwapRequest.html',user=user,cardNumber=cardNumber)
+
+@app.route('/postSwapRequest/<user>/<cardNumber>', methods=['POST'])
+def postSwapRequest(user, cardNumber):
+    conn = sqlite3.connect('euroalbum.db')
+    cur = conn.cursor()
+
+    #query db to get userID
+    cur.execute(f'SELECT AccountNo FROM Accounts WHERE Username = "{user}";')
+    userID = cur.fetchone()[0]
+
+    #split card's file name to get actual card number
+    cardNumberRoot = (cardNumber.split("."))[0]
+
+    #get description from form
+    description = request.form.get('description')
+
+    cur.execute(f'INSERT INTO SwapRequests (UserID,CardNumber,Description) VALUES ({userID},{cardNumberRoot},"{description}");')
+    conn.commit()
+    conn.close()
+    return redirect('/home/'+user)
 
 if __name__ == "__main__":
     app.run(debug=True)
