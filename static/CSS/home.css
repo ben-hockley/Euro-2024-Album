@@ -81,12 +81,27 @@ body{
     border:1px solid black;
     height:75%;
     width:100%;
-    overflow: auto;
+    overflow-x: scroll;
+    overflow-y: hidden;
     display:flex;
 }
 #swapList{
     display: none;
 }
+.swapBox{
+    height:100%;
+}
 .swap{
     height:100%;
+}
+.hoverNode{
+    height:min-content;
+    width:21.21vh;
+    box-sizing: border-box;
+    color:blue;
+    top:0px;
+    display:none;
+}
+.swapRequest{
+    width:100%;
 }
