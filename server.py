@@ -162,5 +162,9 @@ def logNewCards():
     #redirect user back to homescreen
     return redirect('/home/'+user)
 
+@app.route('/home/<user>/createSwapRequest/<cardNumber>')
+def createSwapRequest(user, cardNumber):
+    return render_template('createSwapRequest.html',user=user,cardNumber=cardNumber)
+
 if __name__ == "__main__":
     app.run(debug=True)

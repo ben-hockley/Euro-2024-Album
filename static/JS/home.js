@@ -57,6 +57,8 @@ for (i=0;i<swapList.length;i++){
         node.style.display = 'none';
     })
     document.getElementById('swapContainer').appendChild(swapBox);
+
+    //redirect user to createSwapRequest page specific to swap clicked.
     swapBox.firstChild.addEventListener("click",function(){
         window.location.href = '/home/'+ username +'/createSwapRequest/' + this.parentElement.lastChild.getAttribute('src').split("/").pop();
     })
